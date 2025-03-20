@@ -7,7 +7,6 @@ const App = () => {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState(null);
 
-  // Load posts from localStorage (global) and user from sessionStorage (per tab)
   useEffect(() => {
     const storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
     const storedUser = JSON.parse(sessionStorage.getItem("user")) || null;
@@ -21,24 +20,20 @@ const App = () => {
     setUser(storedUser);
   }, []);
 
-  // Save posts globally using localStorage
   const savePosts = (data) => {
     localStorage.setItem("posts", JSON.stringify(data));
   };
 
-  // Handle user login (per tab)
   const login = (username) => {
     setUser(username);
-    sessionStorage.setItem("user", JSON.stringify(username)); // User is still stored per session
+    sessionStorage.setItem("user", JSON.stringify(username));
   };
 
-  // Handle user logout
   const logout = () => {
     setUser(null);
     sessionStorage.removeItem("user");
   };
 
-  // Add a new post (global for all users)
   const addPost = (content) => {
     if (!user) return alert("You must log in to post!");
     const newPost = {
@@ -47,21 +42,19 @@ const App = () => {
       likes: 0,
       likedBy: [],
       author: user,
-      createdAt: new Date().toISOString(), // Store creation time
+      createdAt: new Date().toISOString(),
     };
     const updatedPosts = [newPost, ...posts];
     setPosts(updatedPosts);
     savePosts(updatedPosts);
   };
 
-  // Delete post (only if user is the author)
   const deletePost = (id) => {
     const updatedPosts = posts.filter((post) => post.id !== id);
     setPosts(updatedPosts);
     savePosts(updatedPosts);
   };
 
-  // Toggle like (all users can like/unlike)
   const toggleLike = (id) => {
     const updatedPosts = posts.map((post) => {
       if (post.id === id) {
@@ -80,7 +73,6 @@ const App = () => {
     savePosts(updatedPosts);
   };
 
-  // Edit post (only author can edit)
   const editPost = (id, newContent) => {
     const updatedPosts = posts.map((post) =>
       post.id === id && post.author === user

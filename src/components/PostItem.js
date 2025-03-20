@@ -4,7 +4,7 @@ const timeAgo = (timestamp) => {
   const postTime = new Date(timestamp);
   const currentTime = new Date();
   const diffInMs = currentTime - postTime;
-  const diffInMinutes = Math.floor(diffInMs / (1000 * 60)); // Convert to minutes
+  const diffInMinutes = Math.floor(diffInMs / (1000 * 60));
 
   if (diffInMinutes < 1) {
     return "Just now";
@@ -24,16 +24,12 @@ const PostItem = ({ post, deletePost, toggleLike, editPost, user }) => {
   const [isTruncatable, setIsTruncatable] = useState(false);
   const contentRef = useRef(null);
 
-  // Check if content needs truncation
   useEffect(() => {
     if (contentRef.current) {
-      // Get the line height of the element
       const lineHeight = parseInt(
         window.getComputedStyle(contentRef.current).lineHeight
       );
-      const maxHeight = lineHeight * 3; // 3 lines
-
-      // Check if content height exceeds 3 lines
+      const maxHeight = lineHeight * 3;
       setIsTruncatable(contentRef.current.scrollHeight > maxHeight);
     }
   }, [post.content]);
