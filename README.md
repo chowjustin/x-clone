@@ -1,10 +1,10 @@
 # X (Twitter) Clone 
 
-This project is a lightweight clone of X (formerly Twitter), built with **React** and **Vanilla CSS**, providing a streamlined text-based social media experience. Users can create, edit, delete, and like posts while data is persistently stored using `localStorage`.  
+This project is a lightweight clone of X (formerly Twitter), built with **React** and **Vanilla CSS**, providing a streamlined text-based social media experience. Users can create, edit, delete, and like posts while data is persistently stored using `localStorage` and `sessionStorage`.  
 
 ## Features  
 
-- **Authentication** - Users can login with different username.
+- **Authentication** - Users can login with different username, where their username is stored in `sessionStorage`.
 - **Post Creation** – Users can create text-based posts.
 - **Post Deletion** – Users can remove their posts when needed.  
 - **Post Editing** – Users can update their existing posts.  
@@ -16,7 +16,7 @@ This project is a lightweight clone of X (formerly Twitter), built with **React*
 
 - **Frontend:** React (State Management)  
 - **Styling:** Vanilla CSS  
-- **Storage:** LocalStorage
+- **Storage:** LocalStorage and SessionStorage
 
 ## Try It
 
